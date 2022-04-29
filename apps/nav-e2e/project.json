@@ -1,0 +1,28 @@
+{
+  "root": "apps/nav-e2e",
+  "sourceRoot": "apps/nav-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/nav-e2e/cypress.json",
+        "devServerTarget": "nav:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "nav:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nav-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["nav"]
+}
