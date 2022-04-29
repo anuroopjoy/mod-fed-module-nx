@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "core": "libs/core",
     "details": "apps/details",
     "details-e2e": "apps/details-e2e",
     "nav": "apps/nav",

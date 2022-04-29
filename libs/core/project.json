@@ -1,0 +1,23 @@
+{
+  "projectType": "library",
+  "root": "libs/core",
+  "sourceRoot": "libs/core/src",
+  "prefix": "mod-fed-module",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/core"],
+      "options": {
+        "jestConfig": "libs/core/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/core/**/*.ts", "libs/core/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

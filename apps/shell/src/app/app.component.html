@@ -1,2 +1,6 @@
-<mod-fed-module-nx-welcome></mod-fed-module-nx-welcome>
-<router-outlet></router-outlet>
+<div class="row">
+  <div [appModuleFedLoader]="loaderConfig['nav']"></div>
+  <div class="column">
+    <div [appModuleFedLoader]="loaderConfig['main']"></div>
+  </div>
+</div>

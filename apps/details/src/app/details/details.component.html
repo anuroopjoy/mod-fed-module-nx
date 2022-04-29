@@ -1,0 +1,13 @@
+<div class="row" *ngFor="let movieColumn of movies">
+  <ng-container *ngFor="let movie of movieColumn; let idx = index">
+    <div *ngIf="idx % 3 === 0" class="column" style="background-color: #aaa">
+      {{ movie.name }}
+    </div>
+    <div *ngIf="idx % 3 === 1" class="column" style="background-color: #bbb">
+      {{ movie.name }}
+    </div>
+    <div *ngIf="idx % 3 === 2" class="column" style="background-color: #ccc">
+      {{ movie.name }}
+    </div>
+  </ng-container>
+</div>
