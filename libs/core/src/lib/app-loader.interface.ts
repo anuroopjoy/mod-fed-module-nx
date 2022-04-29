@@ -1,5 +1,4 @@
 export interface ModuleFedLoaderOptions {
-  path: string;
   cssPath?: string;
   name: string;
   component: string;

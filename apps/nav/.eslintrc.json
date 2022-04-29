@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "modFedModule",
+            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "mod-fed-module",
+            "prefix": "app",
             "style": "kebab-case"
           }
         ]

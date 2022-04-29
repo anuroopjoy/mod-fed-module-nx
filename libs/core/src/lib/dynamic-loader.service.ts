@@ -1,9 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  loadRemoteModule,
-  setRemoteDefinitions,
-  setRemoteUrlResolver,
-} from '@nrwl/angular/mfe';
+import { loadRemoteModule } from '@nrwl/angular/mfe';
 import {
   ComponentRef,
   createNgModuleRef,
@@ -18,7 +14,6 @@ import { ModuleFedLoaderOptions } from './app-loader.interface';
   providedIn: 'root',
 })
 export class DynamicLoader {
-  private loaderQueue: Record<string, ModuleFedLoaderOptions[]> = {};
   constructor(private injector: Injector) {}
 
   public loadModule(
@@ -27,25 +22,6 @@ export class DynamicLoader {
   ) {
     if (!appDetail) return;
     this.loadStyles(appDetail);
-    if (this.loaderQueue[appDetail.path]?.length) {
-      const pendingModules = this.loaderQueue[appDetail.path].filter(
-        (app) => !app.loaded
-      );
-      if (pendingModules?.length) {
-        setTimeout(
-          this.loadModule.bind(this, viewContainerRef, appDetail),
-          100
-        );
-        return;
-      }
-      delete this.loaderQueue[appDetail.path];
-    }
-    this.loaderQueue[appDetail.path] = this.loaderQueue[appDetail.path]?.length
-      ? [...this.loaderQueue[appDetail.path], appDetail]
-      : [appDetail];
-    setRemoteDefinitions({
-      [appDetail.name]: appDetail.path,
-    });
     return loadRemoteModule(appDetail.name, `./${appDetail.component}`)
       .then(async (m: any) => {
         const lazyModule = m[appDetail.component];
@@ -64,22 +40,10 @@ export class DynamicLoader {
         each(appDetail.outputs, (value, key) => {
           component.instance[key].subscribe(value);
         });
-        set(
-          this.loaderQueue[appDetail.path].find(
-            (app) => app.component === appDetail.component
-          ) as ModuleFedLoaderOptions,
-          'loaded',
-          true
-        );
+        set(appDetail, 'loaded', true);
       })
       .catch((error) => {
-        set(
-          this.loaderQueue[appDetail.path].find(
-            (app) => app.component === appDetail.component
-          ) as ModuleFedLoaderOptions,
-          'loaded',
-          true
-        );
+        set(appDetail, 'loaded', true);
         return error;
       });
   }
