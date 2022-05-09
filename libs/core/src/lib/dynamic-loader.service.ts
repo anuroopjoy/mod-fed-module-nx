@@ -22,9 +22,10 @@ export class DynamicLoader {
   ) {
     if (!appDetail) return;
     this.loadStyles(appDetail);
+    appDetail.component = appDetail.component ?? 'default';
     return loadRemoteModule(appDetail.name, `./${appDetail.component}`)
       .then(async (m: any) => {
-        const lazyModule = m[appDetail.component];
+        const lazyModule = m[appDetail.component as string];
         const moduleRef = createNgModuleRef(lazyModule, this.injector);
         const componentClass = (moduleRef.instance as any).getComponent();
         const injector = (moduleRef.instance as any).getInjector();

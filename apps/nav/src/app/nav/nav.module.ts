@@ -9,7 +9,7 @@ import { NavComponent } from './nav.component';
   providers: [],
   exports: [NavComponent],
 })
-export class NavModule {
+export default class NavModule {
   constructor(private injector: Injector) {}
 
   getComponent() {

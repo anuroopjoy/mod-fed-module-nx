@@ -13,14 +13,12 @@ export class AppComponent extends BaseComponent implements OnInit {
   loaderConfig: Record<string, ModuleFedLoaderOptions> = {
     nav: {
       name: 'nav',
-      component: 'NavModule',
       inputs: {
         initialSelection: 'Action',
       },
     },
     details: {
       name: 'details',
-      component: 'MainModule',
     },
   };
 

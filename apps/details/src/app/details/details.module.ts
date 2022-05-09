@@ -9,7 +9,7 @@ import { MainComponent } from './details.component';
   imports: [CommonModule],
   providers: [],
 })
-export class MainModule {
+export default class MainModule {
   constructor(private injector: Injector) {}
   getComponent() {
     return MainComponent;
